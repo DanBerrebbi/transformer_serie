@@ -77,7 +77,6 @@ class Inference():
     finals = [defaultdict() for i in range(bs)] #list with hyps reaching <eos> and overall score
     hyps = torch.ones([bs,1], dtype=int).to(self.device) * self.tgt_voc.idx_bos #[bs,lt=1]
     logP = torch.zeros([bs,1], dtype=torch.float32).to(self.device)     #[bs,lt=1]
-    lp = self.batch_pre.shape[1] if self.batch_pre is not None else 0 #max length of prefixes
 
     while True:
       #hyps is [I,lt] ; K is 1*K OR bs*K ; lt is the hyp length [1, 2, ..., max_size)
